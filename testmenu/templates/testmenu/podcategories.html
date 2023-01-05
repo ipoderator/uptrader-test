@@ -1,0 +1,28 @@
+{% load tags %}
+<ul>
+{% for cat in cats %}
+    {% if cat in tree %}
+        {% if cat == target_cat %}
+            <li>
+                <a href="{% url 'selected_cat' menu cat.title %}"> {{ cat.title }}</a>
+            </li>
+            <ul>
+                {% for subcat in subcats %}
+                <li>
+                    <a href="{% url 'selected_cat' menu subcat.title %}"> {{ subcat.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <li>
+                <a href="{% url 'selected_cat' menu cat.title %}"> {{ cat.title }}</a>
+            </li>
+             {% draw_subcats menu q tree %}
+        {% endif %}
+    {% else %}
+        <li>
+            <a href="{% url 'selected_cat' menu cat.title %}"> {{ cat.title }}</a>
+        </li>
+    {% endif %}
+{% endfor %}
+</ul>

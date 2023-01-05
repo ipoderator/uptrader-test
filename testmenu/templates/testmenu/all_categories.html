@@ -1,0 +1,9 @@
+{% load tags %}
+<ul>
+<a> {{ menu.title }}</a>
+{% for cat in primary_cats %}
+        <li>
+            <a href="{% url 'selected_cat' menu cat.title %}"> {{ cat.title }}</a>
+        </li>
+{% endfor %}
+</ul>
